@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const authschema=new mongoose.Schema({
+const registerSchema=new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -17,7 +17,17 @@ const authschema=new mongoose.Schema({
         minlength: 6
     }
 })
-    const Authmodel = mongoose.model("auth",authschema);
-          module.exports = Authmodel;
+
+const blacklistSchema = new mongoose.Schema({
+    token: {
+        type: String,
+        required: true
+    }
+});
+
+    const Blacklist = mongoose.model("Blacklist", blacklistSchema);
+    const authmodel = mongoose.model("auth",registerSchema);
+
+          module.exports = { authmodel, Blacklist };
 
 
